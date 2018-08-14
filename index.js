@@ -2,20 +2,23 @@ const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const {By, until} = webdriver;
 
-//const options = new chrome.Options();
-//options.addArguments('--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome/Default');
+const options = new chrome.Options();
+options.addArguments('--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome');
+options.addArguments('--no-sandbox');
 
 // NB. It automatically appends 'Default' on the end, so specify the parent directory
+/*
 const options = {
     'args': ['--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome', '--no-sandbox']
 };
+*/
 
 const chromeCapabilities = webdriver.Capabilities.chrome();
-chromeCapabilities.set('chromeOptions', options);
+//chromeCapabilities.set('chromeOptions', options);
 
 const driver = new webdriver.Builder()
     .withCapabilities(chromeCapabilities)
-    //.setChromeOptions(options)
+    .setChromeOptions(options)
     .build();
     
 //driver.manage().timeouts().setScriptTimeout(10000);
