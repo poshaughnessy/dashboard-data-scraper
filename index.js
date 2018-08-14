@@ -7,7 +7,7 @@ const {By, until} = webdriver;
 
 // NB. It automatically appends 'Default' on the end, so specify the parent directory
 const options = {
-    'args': ['--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome']
+    'args': ['--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome', '--no-sandbox']
 };
 
 const chromeCapabilities = webdriver.Capabilities.chrome();
