@@ -2,12 +2,20 @@ const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const {By, until} = webdriver;
 
-var options = new chrome.Options();
-options.addArguments('--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome/Default');
+//const options = new chrome.Options();
+//options.addArguments('--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome/Default');
 
-var driver = new webdriver.Builder()
-    .withCapabilities(webdriver.Capabilities.chrome())
-    .setChromeOptions(options)
+// NB. It automatically appends 'Default' on the end, so specify the parent directory
+const options = {
+    'args': ['--user-data-dir=/home/SERILOCAL/p.oshaughnes/.config/google-chrome']
+};
+
+const chromeCapabilities = webdriver.Capabilities.chrome();
+chromeCapabilities.set('chromeOptions', options);
+
+const driver = new webdriver.Builder()
+    .withCapabilities(chromeCapabilities)
+    //.setChromeOptions(options)
     .build();
     
 //driver.manage().timeouts().setScriptTimeout(10000);
